@@ -1,16 +1,15 @@
 {
   "name": "ts-esm-monorepo",
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {},
   "private": true,
+  "type": "module",
+  "workspaces": [
+    "frontend",
+    "backend",
+    "shared"
+  ],
+  "scripts": {},
   "devDependencies": {
     "nx": "16.2.2",
     "typescript": "^5.0.4"
-  },
-  "workspaces": [
-    "frontend/",
-    "backend/",
-    "shared/"
-  ]
+  }
 }
