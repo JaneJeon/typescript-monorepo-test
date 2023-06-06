@@ -4,8 +4,12 @@
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "devDependencies": {},
   "scripts": {
     "build": "tsc"
+  },
+  "dependencies": {
+    "@sinclair/typebox": "^0.28.14",
+    "hashids": "^2.3.0",
+    "zod": "^3.21.4"
   }
 }
