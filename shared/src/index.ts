@@ -1,3 +1,4 @@
+/// <reference path="../typings/validator.d.ts" />
 export const isEven = (x: number) => x % 2 === 0
 
 export * from './constants.js'
