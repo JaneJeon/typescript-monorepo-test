@@ -1,0 +1,18 @@
+{
+  "targets": {
+    "generate-openapi": {
+      "executor": "nx:run-script",
+      "dependsOn": ["^generate-openapi"],
+      "options": {
+        "script": "generate-openapi"
+      }
+    },
+    "build": {
+      "executor": "nx:run-script",
+      "dependsOn": ["build"],
+      "options": {
+        "script": "build"
+      }
+    }
+  }
+}
