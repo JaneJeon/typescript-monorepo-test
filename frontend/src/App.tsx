@@ -2,9 +2,15 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import axios from 'axios'
+import { useGetUsers } from 'client'
+
+axios.defaults.baseURL = 'http://localhost:3000'
 
 function App() {
   const [count, setCount] = useState(0)
+
+  const { data, isLoading } = useGetUsers()
 
   return (
     <>
@@ -28,6 +34,11 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      {isLoading ? (
+        <p>Loading users...</p>
+      ) : (
+        <p>Loaded users: {JSON.stringify(data, null, 2)}</p>
+      )}
     </>
   )
 }
