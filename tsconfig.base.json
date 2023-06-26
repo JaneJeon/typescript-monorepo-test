@@ -1,4 +1,7 @@
 {
+  // The project reference is needed to prevent TypeScript from compiling the shared package,
+  // and to refer to the tsconfig.json and bundle of the shared package when a workspace imports from it.
+  "references": [{ "path": "./shared" }],
   // https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c#how-can-i-make-my-typescript-project-output-esm
   "compilerOptions": {
     // In general, prefer specifying specific year/version,
@@ -8,11 +11,6 @@
     // https://github.com/tsconfig/bases/blob/main/bases/node16.json
     "module": "Node16", // automatically sets moduleResolution to be the same as well
     "target": "ES2021",
-    // No baseUrl means paths need to be relative to the *location of the tsconfig.json file*.
-    "paths": {
-      // Need to point to the exact index.ts file, not just the directory.
-      "shared": ["./shared/src/index.ts"]
-    },
     // Settings
     "forceConsistentCasingInFileNames": true,
     "strict": true,
