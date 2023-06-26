@@ -9,7 +9,7 @@
     },
     "build": {
       "executor": "nx:run-script",
-      "dependsOn": ["build"],
+      "dependsOn": ["generate-openapi"],
       "options": {
         "script": "build"
       }
