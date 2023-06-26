@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["."],
+  "ts-node": {
+    "transpileOnly": true,
+    "esm": true,
+    "files": true
+  }
+}
+// TODO: doesn't work :(
+// "generate-openapi": "ts-node --project tsconfig-node.json ./scripts/generate-openapi.ts",
