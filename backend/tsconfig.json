@@ -1,7 +1,12 @@
 {
   "extends": "../tsconfig.base.json",
-  "include": ["./src"],
+  "include": ["src"],
   "compilerOptions": {
-    "outDir": "./dist"
-  }
+    "rootDir": "src",
+    "outDir": "dist"
+  },
+  // The project reference is needed to prevent TypeScript
+  // from compiling the shared package, and to use the "reference"
+  // in the monorepo instead.
+  "references": [{ "path": "../shared" }]
 }
