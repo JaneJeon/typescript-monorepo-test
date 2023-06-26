@@ -3,6 +3,7 @@ import type { ZodTypeProvider } from 'fastify-type-provider-zod'
 import {
   UserSchemaZod,
   UsersQueryZod,
+  UserPathParamZod,
   CreateUserBodyZod,
   UpdateUserBodyZod,
   DeleteUserQueryZod,
@@ -63,6 +64,7 @@ const testRoute: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
         schema: {
           summary: 'Get user',
           description: 'Fetch a single, specific user.',
+          params: UserPathParamZod,
           response: {
             200: UserSchemaZod.describe('The user with the matching id')
             // TODO: 404:
@@ -79,6 +81,7 @@ const testRoute: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
         schema: {
           summary: 'Update user',
           description: "Update a user's details.",
+          params: UserPathParamZod,
           body: UpdateUserBodyZod,
           response: {
             200: UserSchemaZod.describe('The updated user details')
@@ -95,6 +98,7 @@ const testRoute: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
         schema: {
           summary: 'Delete user',
           description: 'Delete a user. Can soft-delete or hard-delete.',
+          params: UserPathParamZod,
           querystring: DeleteUserQueryZod
           // response: {
           //   // TODO: 204:

@@ -78,6 +78,8 @@ export const UsersQueryZod = UserSchemaZod.omit({
   updatedAt: true
 }).partial()
 
+export const UserPathParamZod = UserSchemaZod.pick({ id: true })
+
 // Object representation of the payload that is allowed (coming into the backend) when creating a user
 export const CreateUserBodyZod = UserSchemaZod.pick({
   id: true,
