@@ -9,14 +9,15 @@
   },
   "scripts": {
     "test": "tsc -p test/tsconfig.json && tap --ts \"test/**/*.test.ts\"",
-    "start:zod": "fastify start -l info dist/app-zod.js",
-    "start:typebox": "fastify start -l info dist/app-typebox.js",
+    "start-zod": "fastify start -l info dist/app-zod.js",
+    "start-typebox": "fastify start -l info dist/app-typebox.js",
     "build": "concurrently 'npm:build:*'",
     "build:ts": "tsc",
     "watch": "concurrently 'npm:watch:*'",
     "watch:ts": "tsc -w",
     "dev": "concurrently -k -p \"[{name}]\" -n \"TypeScript,App\" -c \"yellow.bold,cyan.bold\" \"npm:watch:ts\" \"npm:dev:start\"",
-    "dev:start": "fastify start --ignore-watch=.ts$ -w -l info -P dist/app.js"
+    "dev:start": "fastify start --ignore-watch=.ts$ -w -l info -P dist/app.js",
+    "generate-openapi": "node ./scripts/generate-openapi.js"
   },
   "keywords": [],
   "author": "",
@@ -39,7 +40,6 @@
     "concurrently": "^7.0.0",
     "fastify-tsconfig": "^1.0.1",
     "tap": "^16.1.0",
-    "ts-node": "^10.4.0",
     "typescript": "^5.1.3"
   }
 }

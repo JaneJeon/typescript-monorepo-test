@@ -1,0 +1,25 @@
+{
+  "targets": {
+    "start-zod": {
+      "dependsOn": ["build"],
+      "executor": "nx:run-script",
+      "options": {
+        "script": "start-zod"
+      }
+    },
+    "start-typebox": {
+      "dependsOn": ["build"],
+      "executor": "nx:run-script",
+      "options": {
+        "script": "start-typebox"
+      }
+    },
+    "generate-openapi": {
+      "dependsOn": ["build"],
+      "executor": "nx:run-script",
+      "options": {
+        "script": "generate-openapi"
+      }
+    }
+  }
+}

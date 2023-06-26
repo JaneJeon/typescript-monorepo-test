@@ -24,10 +24,4 @@
     "allowArbitraryExtensions": true,
     "resolveJsonModule": true // be careful when importing json - if it's outside of src, rootDir will be set to the "highest common directory"
   }
-  // TODO: check with ts-node
-  // "ts-node": {
-  //   "transpileOnly": true,
-  //   "files": true,
-  //   "experimentalResolver": true
-  // }
 }
