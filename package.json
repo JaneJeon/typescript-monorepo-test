@@ -8,9 +8,16 @@
     "shared",
     "client"
   ],
-  "scripts": {},
+  "scripts": {
+    "prepare": "husky install"
+  },
   "devDependencies": {
+    "@janejeon/prettier-config": "^1.1.2",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2",
     "nx": "16.2.2",
+    "prettier": "^2.8.8",
+    "skip-ci": "^1.0.5",
     "typescript": "^5.0.4"
   },
   "engines": {
