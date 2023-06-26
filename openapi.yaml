@@ -1,0 +1,348 @@
+openapi: 3.0.3
+info:
+  title: SampleApi
+  description: Sample backend service
+  version: 1.0.0
+components:
+  schemas: {}
+paths:
+  /users:
+    post:
+      summary: Create user
+      description: You can use this endpoint to create users.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  minLength: 1
+                  description: The user ID (that is auto-generated from the backend).
+                name:
+                  type: string
+                  minLength: 1
+                  description: The username that is provided by the user.
+              required:
+                - id
+                - name
+              additionalProperties: false
+              description: The shape of a User object
+        required: true
+      responses:
+        '201':
+          description: The created user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  createdAt:
+                    type: string
+                    format: date-time
+                    description:
+                      An ISO timestamp string indicating when the object was created. Do
+                      not set directly.
+                  updatedAt:
+                    type: string
+                    format: date-time
+                    description:
+                      An ISO timestamp string indicating when the object was updated. Do
+                      not set directly.
+                  id:
+                    type: string
+                    minLength: 1
+                    description: The user ID (that is auto-generated from the backend).
+                  name:
+                    type: string
+                    minLength: 1
+                    description: The username that is provided by the user.
+                  role:
+                    type: string
+                    enum:
+                      - user
+                      - superuser
+                    default: user
+                    description:
+                      The role for the user. Note that superuser status can only be set
+                      by another superuser/admin.
+                  deactivated:
+                    type: boolean
+                    default: true
+                    description:
+                      Deleted users will be marked with the `deactivated` flag. Do not
+                      set directly.
+                required:
+                  - createdAt
+                  - updatedAt
+                  - id
+                  - name
+                additionalProperties: false
+                description: The created user
+    get:
+      summary: Get users
+      description: Use this endpoint to get a list of users.
+      parameters:
+        - schema:
+            type: string
+            minLength: 1
+          in: query
+          name: id
+          required: false
+          description: The user ID (that is auto-generated from the backend).
+        - schema:
+            type: string
+            minLength: 1
+          in: query
+          name: name
+          required: false
+          description: The username that is provided by the user.
+        - schema:
+            type: string
+            enum:
+              - user
+              - superuser
+            default: user
+          in: query
+          name: role
+          required: false
+          description:
+            The role for the user. Note that superuser status can only be set
+            by another superuser/admin.
+        - schema:
+            type: boolean
+            default: true
+          in: query
+          name: deactivated
+          required: false
+          description:
+            Deleted users will be marked with the `deactivated` flag. Do not
+            set directly.
+      responses:
+        '200':
+          description: The list of users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    createdAt:
+                      type: string
+                      format: date-time
+                      description:
+                        An ISO timestamp string indicating when the object was created. Do
+                        not set directly.
+                    updatedAt:
+                      type: string
+                      format: date-time
+                      description:
+                        An ISO timestamp string indicating when the object was updated. Do
+                        not set directly.
+                    id:
+                      type: string
+                      minLength: 1
+                      description: The user ID (that is auto-generated from the backend).
+                    name:
+                      type: string
+                      minLength: 1
+                      description: The username that is provided by the user.
+                    role:
+                      type: string
+                      enum:
+                        - user
+                        - superuser
+                      default: user
+                      description:
+                        The role for the user. Note that superuser status can only be set
+                        by another superuser/admin.
+                    deactivated:
+                      type: boolean
+                      default: true
+                      description:
+                        Deleted users will be marked with the `deactivated` flag. Do not
+                        set directly.
+                  required:
+                    - createdAt
+                    - updatedAt
+                    - id
+                    - name
+                  additionalProperties: false
+                  description: The shape of a User object
+                description: The list of users
+  '/users/{id}':
+    get:
+      summary: Get user
+      description: Fetch a single, specific user.
+      parameters:
+        - schema:
+            type: string
+            minLength: 1
+          in: path
+          name: id
+          required: true
+          description: The user ID (that is auto-generated from the backend).
+      responses:
+        '200':
+          description: The user with the matching id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  createdAt:
+                    type: string
+                    format: date-time
+                    description:
+                      An ISO timestamp string indicating when the object was created. Do
+                      not set directly.
+                  updatedAt:
+                    type: string
+                    format: date-time
+                    description:
+                      An ISO timestamp string indicating when the object was updated. Do
+                      not set directly.
+                  id:
+                    type: string
+                    minLength: 1
+                    description: The user ID (that is auto-generated from the backend).
+                  name:
+                    type: string
+                    minLength: 1
+                    description: The username that is provided by the user.
+                  role:
+                    type: string
+                    enum:
+                      - user
+                      - superuser
+                    default: user
+                    description:
+                      The role for the user. Note that superuser status can only be set
+                      by another superuser/admin.
+                  deactivated:
+                    type: boolean
+                    default: true
+                    description:
+                      Deleted users will be marked with the `deactivated` flag. Do not
+                      set directly.
+                required:
+                  - createdAt
+                  - updatedAt
+                  - id
+                  - name
+                additionalProperties: false
+                description: The user with the matching id
+    patch:
+      summary: Update user
+      description: Update a user's details.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  minLength: 1
+                  description: The username that is provided by the user.
+                role:
+                  type: string
+                  enum:
+                    - user
+                    - superuser
+                  default: user
+                  description:
+                    The role for the user. Note that superuser status can only be set
+                    by another superuser/admin.
+                deactivated:
+                  type: boolean
+                  default: true
+                  description:
+                    Deleted users will be marked with the `deactivated` flag. Do not
+                    set directly.
+              additionalProperties: false
+              description: The shape of a User object
+      parameters:
+        - schema:
+            type: string
+            minLength: 1
+          in: path
+          name: id
+          required: true
+          description: The user ID (that is auto-generated from the backend).
+      responses:
+        '200':
+          description: The updated user details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  createdAt:
+                    type: string
+                    format: date-time
+                    description:
+                      An ISO timestamp string indicating when the object was created. Do
+                      not set directly.
+                  updatedAt:
+                    type: string
+                    format: date-time
+                    description:
+                      An ISO timestamp string indicating when the object was updated. Do
+                      not set directly.
+                  id:
+                    type: string
+                    minLength: 1
+                    description: The user ID (that is auto-generated from the backend).
+                  name:
+                    type: string
+                    minLength: 1
+                    description: The username that is provided by the user.
+                  role:
+                    type: string
+                    enum:
+                      - user
+                      - superuser
+                    default: user
+                    description:
+                      The role for the user. Note that superuser status can only be set
+                      by another superuser/admin.
+                  deactivated:
+                    type: boolean
+                    default: true
+                    description:
+                      Deleted users will be marked with the `deactivated` flag. Do not
+                      set directly.
+                required:
+                  - createdAt
+                  - updatedAt
+                  - id
+                  - name
+                additionalProperties: false
+                description: The updated user details
+    delete:
+      summary: Delete user
+      description: Delete a user. Can soft-delete or hard-delete.
+      parameters:
+        - schema: {}
+          in: query
+          name: not
+        - schema:
+            type: string
+            default: 'false'
+          in: query
+          name: hardDelete
+          required: false
+        - schema:
+            type: string
+            minLength: 1
+          in: path
+          name: id
+          required: true
+          description: The user ID (that is auto-generated from the backend).
+      responses:
+        '200':
+          description: Default Response
+servers: []
