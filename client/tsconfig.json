@@ -4,6 +4,8 @@
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "dist",
-    "declaration": true
+    "declaration": true,
+    "declarationMap": true, // recommended if using project references
+    "composite": true // needed for project references, see frontend/tsconfig.json
   }
 }

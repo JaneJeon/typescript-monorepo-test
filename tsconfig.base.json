@@ -1,7 +1,7 @@
 {
   // The project reference is needed to prevent TypeScript from compiling the shared package,
   // and to refer to the tsconfig.json and bundle of the shared package when a workspace imports from it.
-  "references": [{ "path": "./shared" }],
+  "references": [{ "path": "./shared" }, { "path": "./client" }],
   // https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c#how-can-i-make-my-typescript-project-output-esm
   "compilerOptions": {
     // In general, prefer specifying specific year/version,
