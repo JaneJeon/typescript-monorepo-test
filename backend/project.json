@@ -5,8 +5,7 @@
       "executor": "nx:run-script",
       "options": {
         "script": "start-zod"
-      },
-      "outputs": ["../openapi.yaml"]
+      }
     },
     "start-typebox": {
       "dependsOn": ["build"],
@@ -20,7 +19,8 @@
       "executor": "nx:run-script",
       "options": {
         "script": "generate-openapi"
-      }
+      },
+      "outputs": ["{workspaceRoot}/openapi.yml"]
     }
   }
 }

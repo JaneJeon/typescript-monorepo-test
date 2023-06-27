@@ -5,7 +5,9 @@
       "dependsOn": ["^generate-openapi"],
       "options": {
         "script": "generate-openapi"
-      }
+      },
+      "inputs": ["{workspaceRoot}/openapi.yml"],
+      "outputs": ["{projectRoot}/src/**/*.ts"]
     },
     "build": {
       "executor": "nx:run-script",
