@@ -15,7 +15,7 @@ export default defineConfig({
     input: '../openapi.yml',
     output: {
       target: './src/axios.ts',
-      client: 'axios'
+      client: 'axios-functions'
     },
     hooks: {
       afterAllFilesWrite: 'prettier --write'

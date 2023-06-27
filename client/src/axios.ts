@@ -193,72 +193,69 @@ export type PostUsersBody = {
   name: string
 }
 
-export const getSampleApi = () => {
-  /**
-   * You can use this endpoint to create users.
-   * @summary Create user
-   */
-  const postUsers = <TData = AxiosResponse<PostUsers201>>(
-    postUsersBody: PostUsersBody,
-    options?: AxiosRequestConfig
-  ): Promise<TData> => {
-    return axios.default.post(`/users`, postUsersBody, options)
-  }
-
-  /**
-   * Use this endpoint to get a list of users.
-   * @summary Get users
-   */
-  const getUsers = <TData = AxiosResponse<GetUsers200Item[]>>(
-    params?: GetUsersParams,
-    options?: AxiosRequestConfig
-  ): Promise<TData> => {
-    return axios.default.get(`/users`, {
-      ...options,
-      params: { ...params, ...options?.params }
-    })
-  }
-
-  /**
-   * Fetch a single, specific user.
-   * @summary Get user
-   */
-  const getUsersId = <TData = AxiosResponse<GetUsersId200>>(
-    id: string,
-    options?: AxiosRequestConfig
-  ): Promise<TData> => {
-    return axios.default.get(`/users/${id}`, options)
-  }
-
-  /**
-   * Update a user's details.
-   * @summary Update user
-   */
-  const patchUsersId = <TData = AxiosResponse<PatchUsersId200>>(
-    id: string,
-    patchUsersIdBody: PatchUsersIdBody,
-    options?: AxiosRequestConfig
-  ): Promise<TData> => {
-    return axios.default.patch(`/users/${id}`, patchUsersIdBody, options)
-  }
-
-  /**
-   * Delete a user. Can soft-delete or hard-delete.
-   * @summary Delete user
-   */
-  const deleteUsersId = <TData = AxiosResponse<void>>(
-    id: string,
-    params?: DeleteUsersIdParams,
-    options?: AxiosRequestConfig
-  ): Promise<TData> => {
-    return axios.default.delete(`/users/${id}`, {
-      ...options,
-      params: { ...params, ...options?.params }
-    })
-  }
-
-  return { postUsers, getUsers, getUsersId, patchUsersId, deleteUsersId }
+/**
+ * You can use this endpoint to create users.
+ * @summary Create user
+ */
+export const postUsers = <TData = AxiosResponse<PostUsers201>>(
+  postUsersBody: PostUsersBody,
+  options?: AxiosRequestConfig
+): Promise<TData> => {
+  return axios.default.post(`/users`, postUsersBody, options)
 }
+
+/**
+ * Use this endpoint to get a list of users.
+ * @summary Get users
+ */
+export const getUsers = <TData = AxiosResponse<GetUsers200Item[]>>(
+  params?: GetUsersParams,
+  options?: AxiosRequestConfig
+): Promise<TData> => {
+  return axios.default.get(`/users`, {
+    ...options,
+    params: { ...params, ...options?.params }
+  })
+}
+
+/**
+ * Fetch a single, specific user.
+ * @summary Get user
+ */
+export const getUsersId = <TData = AxiosResponse<GetUsersId200>>(
+  id: string,
+  options?: AxiosRequestConfig
+): Promise<TData> => {
+  return axios.default.get(`/users/${id}`, options)
+}
+
+/**
+ * Update a user's details.
+ * @summary Update user
+ */
+export const patchUsersId = <TData = AxiosResponse<PatchUsersId200>>(
+  id: string,
+  patchUsersIdBody: PatchUsersIdBody,
+  options?: AxiosRequestConfig
+): Promise<TData> => {
+  return axios.default.patch(`/users/${id}`, patchUsersIdBody, options)
+}
+
+/**
+ * Delete a user. Can soft-delete or hard-delete.
+ * @summary Delete user
+ */
+export const deleteUsersId = <TData = AxiosResponse<void>>(
+  id: string,
+  params?: DeleteUsersIdParams,
+  options?: AxiosRequestConfig
+): Promise<TData> => {
+  return axios.default.delete(`/users/${id}`, {
+    ...options,
+    params: { ...params, ...options?.params }
+  })
+}
+
 export type PostUsersResult = AxiosResponse<PostUsers201>
 export type GetUsersResult = AxiosResponse<GetUsers200Item[]>
 export type GetUsersIdResult = AxiosResponse<GetUsersId200>
