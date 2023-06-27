@@ -1,11 +1,21 @@
 import { defineConfig } from 'orval'
 
 export default defineConfig({
-  service: {
+  reactQueryClient: {
     input: '../openapi.yml',
     output: {
-      target: './src/index.ts',
+      target: './src/react-query.ts',
       client: 'react-query'
+    },
+    hooks: {
+      afterAllFilesWrite: 'prettier --write'
+    }
+  },
+  axiosClient: {
+    input: '../openapi.yml',
+    output: {
+      target: './src/axios.ts',
+      client: 'axios'
     },
     hooks: {
       afterAllFilesWrite: 'prettier --write'

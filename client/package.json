@@ -2,19 +2,32 @@
   "name": "client",
   "private": true,
   "type": "module",
-  "main": "./dist/index.js",
-  "types": "dist/index.d.ts",
+  "exports": {
+    "./axios": {
+      "default": "./dist/axios.js",
+      "types": "./dist/axios.d.ts"
+    },
+    "./react-query": {
+      "default": "./dist/react-query.js",
+      "types": "./dist/react-query.d.ts"
+    }
+  },
   "scripts": {
     "generate-openapi": "orval",
     "build": "tsc"
-  },
-  "dependencies": {
-    "@tanstack/react-query": "^4.29.17",
-    "axios": "^1.4.0"
   },
   "devDependencies": {
     "backend": "*",
     "orval": "^6.16.0",
     "typescript": "^5.1.3"
+  },
+  "peerDependencies": {
+    "@tanstack/react-query": "^4.29.17",
+    "axios": "^1.4.0"
+  },
+  "peerDependenciesMeta": {
+    "@tanstack/react-query": {
+      "optional": true
+    }
   }
 }

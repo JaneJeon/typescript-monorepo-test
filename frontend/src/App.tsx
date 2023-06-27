@@ -3,14 +3,21 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import axios from 'axios'
-import { useGetUsers } from 'client'
+import { getSampleApi } from 'client/axios'
+import { useGetUsers, useGetUsersId } from 'client/react-query'
+import { CreateUserBodyZod } from 'shared'
 
 axios.defaults.baseURL = 'http://localhost:3000'
+
+const { getUsersId } = getSampleApi()
 
 function App() {
   const [count, setCount] = useState(0)
 
+  getUsersId('id').then(val => val.data.createdAt)
+
   const { data, isLoading } = useGetUsers()
+  data?.data[0].createdAt
 
   return (
     <>
