@@ -17,7 +17,7 @@
     "watch:ts": "tsc -w",
     "dev": "concurrently -k -p \"[{name}]\" -n \"TypeScript,App\" -c \"yellow.bold,cyan.bold\" \"npm:watch:ts\" \"npm:dev:start\"",
     "dev:start": "fastify start --ignore-watch=.ts$ -w -l info -P dist/app.js",
-    "generate-openapi": "node ./scripts/generate-openapi.js"
+    "generate-openapi": "./scripts/generate-openapi.js"
   },
   "keywords": [],
   "author": "",
