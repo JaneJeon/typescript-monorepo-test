@@ -1,4 +1,0 @@
-// Only exists so that typescript-eslint can be run from root
-{
-  "extends": "./tsconfig.base.json"
-}
