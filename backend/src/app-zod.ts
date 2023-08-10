@@ -1,7 +1,7 @@
 import { fileURLToPath } from 'url'
 import { dirname, join } from 'path'
 import AutoLoad, { AutoloadPluginOptions } from '@fastify/autoload'
-import { FastifyPluginAsync } from 'fastify'
+import { fastifyRequestContext } from '@fastify/request-context'
 import fastifySwagger from '@fastify/swagger'
 import fastifySwaggerUI from '@fastify/swagger-ui'
 import {
@@ -9,6 +9,8 @@ import {
   serializerCompiler,
   validatorCompiler
 } from 'fastify-type-provider-zod'
+
+import type { FastifyPluginAsync } from 'fastify'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -27,7 +29,7 @@ const app: FastifyPluginAsync<AppOptions> = async (
   // This loads all plugins defined in plugins
   // those should be support plugins that are reused
   // through your application
-  void fastify.register(AutoLoad, {
+  fastify.register(AutoLoad, {
     dir: join(__dirname, 'plugins'),
     options: opts
   })
@@ -35,6 +37,8 @@ const app: FastifyPluginAsync<AppOptions> = async (
   // Plug in zod type provider
   fastify.setSerializerCompiler(serializerCompiler)
   fastify.setValidatorCompiler(validatorCompiler)
+
+  fastify.register(fastifyRequestContext)
 
   // Make zod type provider work with OpenAPI
   fastify.register(fastifySwagger, {
@@ -55,7 +59,7 @@ const app: FastifyPluginAsync<AppOptions> = async (
 
   fastify.after(() => {
     // We need to load the routes *after* the swagger stuff has been installed.
-    void fastify.register(AutoLoad, {
+    fastify.register(AutoLoad, {
       dir: join(__dirname, 'routes'),
       options: opts,
       matchFilter: path => path.includes('zod')
