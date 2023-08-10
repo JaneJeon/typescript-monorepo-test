@@ -61,8 +61,7 @@ const app: FastifyPluginAsync<AppOptions> = async (
     // We need to load the routes *after* the swagger stuff has been installed.
     fastify.register(AutoLoad, {
       dir: join(__dirname, 'routes'),
-      options: opts,
-      matchFilter: path => path.includes('zod')
+      options: opts
     })
   })
 }

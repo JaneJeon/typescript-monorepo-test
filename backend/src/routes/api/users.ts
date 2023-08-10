@@ -6,11 +6,7 @@ import {
   UserPathParamZod,
   CreateUserBodyZod,
   UpdateUserBodyZod,
-  DeleteUserQueryZod,
-  LinkSchemaZod,
-  LinksQueryZod,
-  CreateLinkBodyZod,
-  UpdateLinkBodyZod
+  DeleteUserQueryZod
 } from 'shared'
 
 // Note that none of the create/update schema have "transform" function.
@@ -18,7 +14,7 @@ import {
 // In other words, transform/defaults should only be used on server side where possible,
 // because anything that hits the server should already have the correct payload!
 
-const testRoute: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
+const userRoutes: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
   fastify
     .withTypeProvider<ZodTypeProvider>()
     .post(
@@ -111,4 +107,4 @@ const testRoute: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
     )
 }
 
-export default testRoute
+export default userRoutes
